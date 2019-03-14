@@ -4,8 +4,9 @@ const bodyParser = require('body-parser')
 const express = require('express')
 
 const router = express.Router()
+router.use(bodyParser.urlencoded({extended: false}))
 
-router.use(express.static('./../public'))
+router.use(express.static('././public'))
 
 router.get('/messages', (req,res) => {
     console.log("Show me some mess... ")
