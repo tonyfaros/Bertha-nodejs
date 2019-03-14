@@ -5,6 +5,8 @@ const express = require('express')
 
 const router = express.Router()
 
+router.use(express.static('./../public'))
+
 router.get('/messages', (req,res) => {
     console.log("Show me some mess... ")
     res.end()
