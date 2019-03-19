@@ -19,15 +19,17 @@ router.post('/user_create', (req, res) => {
     const firstName = req.body.first_name
     const lastName = req.body.last_name
     const email = req.body.email
+    const phone_num = req.body.phone_num
     const password = req.body.password
+    const salt = req.body.salt
     const driveMode = req.body.drive_mode
 
-    const queryString = "insert into users (name,last_name) VALUES (?, ?)"
+    const queryString = "insert into users (name,last_name,email,phone_num,password,salt,drive_mod_def) VALUES (?, ?, ?, ?, ?, ?, ?)"
 
-    getConnection().query(queryString, [firstName,lastName], (err,res,fields) => {
+    getConnection().query(queryString, [firstName,lastName,email,phone_num,password,salt,driveMode], (err,res,fields) => {
         if(err){
             console.log(err)
-            console.log("ERROOORRRR")
+            console.log("ERROR")
             res.sendStatus(500)
             res.end()
             return
@@ -39,7 +41,7 @@ router.post('/user_create', (req, res) => {
     res.end()
 })
 
-router.get('/user/:id', (req, res) => {
+router.get('/userId/:id', (req, res) => {
     console.log("Fetching user with id: " + req.params.id)
 
     const connection = getConnection()
@@ -47,6 +49,25 @@ router.get('/user/:id', (req, res) => {
     const queryString = 'select * from users where id = ?'
     const paramId = req.params.id
     connection.query(queryString, [paramId], (err, rows, fields)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            res.end()
+            return
+        }
+        res.json(rows)
+    })
+
+})
+
+router.get('/user/:username', (req, res) => {
+    console.log("Fetching user with username: " + req.params.username)
+
+    const connection = getConnection()
+
+    const queryString = 'select * from users where name = ?'
+    const paramEmail = req.params.username
+    connection.query(queryString, [paramEmail], (err, rows, fields)=>{
         if(err){
             res.sendStatus(500)
             console.log(err)
