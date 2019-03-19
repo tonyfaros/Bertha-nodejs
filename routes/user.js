@@ -42,7 +42,6 @@ router.post('/user_create', (req, res) => {
         if(err){
             console.log(err)
             console.log("ERROR")
-            res.sendStatus(500)
             res.end()
             return
         }
