@@ -24,8 +24,21 @@ router.post('/user_create', (req, res) => {
     const salt = req.body.salt
     const drive_mode_def = req.body.drive_mode_def
 
-    const queryString = "insert into users (name,last_name,email,phone_num,password,salt,drive_mode_def) VALUES (?, ?, ?, ?, ?, ?, ?)"
+    console.log(name)
 
+    console.log(last_name)
+    console.log(email)
+    console.log(phone_num)
+    console.log(password)
+    console.log(salt)
+    console.log(drive_mode_def)
+    console.log("--------------------------------------------")
+
+    const queryString = "insert into users ('name','last_name','email','phone_num','password','salt','drive_mode_def') VALUES (?, ?, ?, ?, ?, ?, ?);"
+
+
+    //"INSERT INTO `heroku_cd69aac1f1eff94`.`users` (`name`, `last_name`, `email`, `phone_num`, `password`, `salt`, `drive_mode_def`) VALUES ('maria', 'pizarro', 'maria@gmail.com', '7565164', '1234', '1234', 'eco');
+   // "
     getConnection().query(queryString, [name,last_name,email,phone_num,password,salt,drive_mode_def], (err,res,fields) => {
         if(err){
             console.log(err)
