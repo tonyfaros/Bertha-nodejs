@@ -98,7 +98,7 @@ router.get('/users', (req, res) => {
 })
 
 const pool = mysql.createPool({
-    connectionLimit: 10,
+    connectionLimit: 100,
     host: 'us-cdbr-iron-east-03.cleardb.net',
     //port: '3306',
     user: 'b2422c79d1fa8f',
