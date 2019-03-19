@@ -13,7 +13,7 @@ router.get('/messages', (req,res) => {
     res.end()
 })
 
-router.post('/user_create', (req, res) => {
+router.post('/user_create/', (req, res) => {
     console.log("Trying to post a new user")
 
     const name = req.body.name
@@ -23,6 +23,8 @@ router.post('/user_create', (req, res) => {
     const password = req.body.password
     const salt = req.body.salt
     const drive_mode_def = req.body.drive_mode_def
+
+    password = password.replace('\n','')
 
     console.log(name)
     console.log(last_name)
