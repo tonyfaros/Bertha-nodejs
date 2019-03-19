@@ -33,7 +33,7 @@ router.post('/user_create', (req, res) => {
     console.log(drive_mode_def)
     console.log("--------------------------------------------")
 
-    const queryString = "insert into users ('name','last_name','email','phone_num','password','salt','drive_mode_def') VALUES (?, ?, ?, ?, ?, ?, ?);"
+    const queryString = "insert into users (name,last_name,email,phone_num,password,salt,drive_mode_def) VALUES (?, ?, ?, ?, ?, ?, ?);"
 
 
     //"INSERT INTO `heroku_cd69aac1f1eff94`.`users` (`name`, `last_name`, `email`, `phone_num`, `password`, `salt`, `drive_mode_def`) VALUES ('maria', 'pizarro', 'maria@gmail.com', '7565164', '1234', '1234', 'eco');
@@ -42,7 +42,6 @@ router.post('/user_create', (req, res) => {
         if(err){
             console.log(err)
             console.log("ERROR")
-            res.end()
             return
         }
         console.log("Inserted the new user: " , res.id)
