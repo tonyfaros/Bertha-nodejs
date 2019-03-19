@@ -16,13 +16,13 @@ router.get('/messages', (req,res) => {
 router.post('/user_create', (req, res) => {
     console.log("Trying to post a new user")
 
-    const firstName = req.body.first_name
+    const firstName = req.body.name
     const lastName = req.body.last_name
     const email = req.body.email
     const phone_num = req.body.phone_num
     const password = req.body.password
     const salt = req.body.salt
-    const driveMode = req.body.drive_mode
+    const driveMode = req.body.drive_mode_def
 
     const queryString = "insert into users (name,last_name,email,phone_num,password,salt,drive_mod_def) VALUES (?, ?, ?, ?, ?, ?, ?)"
 
