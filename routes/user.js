@@ -25,7 +25,6 @@ router.post('/user_create', (req, res) => {
     const drive_mode_def = req.body.drive_mode_def
 
     console.log(name)
-
     console.log(last_name)
     console.log(email)
     console.log(phone_num)
