@@ -20,7 +20,7 @@ router.post('/user_create/', (req, res) => {
     const last_name = req.body.last_name
     const email = req.body.email
     const phone_num = req.body.phone_num
-    const password = req.body.password
+    var password = req.body.password
     const salt = req.body.salt
     const drive_mode_def = req.body.drive_mode_def
 
