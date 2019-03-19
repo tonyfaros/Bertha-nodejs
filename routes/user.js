@@ -75,7 +75,7 @@ router.get('/user/:username', (req, res) => {
 
     const connection = getConnection()
 
-    const queryString = 'select user.password, user.salt from users where email = ?'
+    const queryString = 'select users.password, users.salt from users where email = ?'
     const paramEmail = req.params.username
     connection.query(queryString, [paramEmail], (err, rows, fields)=>{
         if(err){
