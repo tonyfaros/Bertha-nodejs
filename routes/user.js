@@ -24,7 +24,7 @@ router.post('/user_create', (req, res) => {
     const salt = req.body.salt
     const drive_mode_def = req.body.drive_mode_def
 
-    const queryString = "insert into users (name,last_name,email,phone_num,password,salt,drive_mod_def) VALUES (?, ?, ?, ?, ?, ?, ?)"
+    const queryString = "insert into users (name,last_name,email,phone_num,password,salt,drive_mode_def) VALUES (?, ?, ?, ?, ?, ?, ?)"
 
     getConnection().query(queryString, [name,last_name,email,phone_num,password,salt,drive_mode_def], (err,res,fields) => {
         if(err){
