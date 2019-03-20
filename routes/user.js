@@ -24,7 +24,7 @@ router.post('/user_create/', (req, res) => {
     const salt = req.body.salt
     const drive_mode_def = req.body.drive_mode_def
 
-    password = password.replace('\n','')
+    //password = password.replace('\n','')
 
     console.log(name)
     console.log(last_name)
@@ -46,7 +46,7 @@ router.post('/user_create/', (req, res) => {
             console.log("ERROR")
             return
         }
-        console.log("Inserted the new user: " , res.id)
+        console.log("Inserted the new user: " , res)
         
     })
     //console.log(firstName + lastName + email+ password+driveMode)
