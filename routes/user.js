@@ -13,6 +13,46 @@ router.get('/messages', (req,res) => {
     res.end()
 })
 
+router.post('/car_create/', (req, res) =>{
+    
+    const make = req.body.make
+    const model = req.body.model
+    const year = req.body.year
+    const license_plate = req.body.license_plate
+    const fuel_type = req.body.fuel_type
+    const weigh_kg = req.body.weigh_kg
+    const model_trim = req.body.model_trim
+    const engine_cc = req.body.engine_cc
+    const length_mm = req.body.length_mm
+    const width_mm = req.body.width_mm
+    const height_mm = req.body.height_mm
+    const mpg_hwy = req.body.mpg_hwy       //HAY QUE CAMBIARLO
+    const mpg_city = req.body.mpg_city       //HAY QUE CAMBIARLO
+    const mpg_mixed = req.body.impg_mixedd       //HAY QUE CAMBIARLO
+    const body_style = req.body.body_style
+    const door_number = req.body.door_number
+    const drive = req.body.drive
+    const engine_position = req.body.engine_position
+    const engine_type = req.body.engine_type
+
+    const queryString = "insert into cars (make, model,year,licence_plate,fuel_type, weigh_kg,model_trim,engine_cc, length_mm, width_mm,height_mm,mpg_hwy,mpg_city, mpg_mixed,body_style,door_number,drive,engine_position,engine_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+
+
+  
+    getConnection().query(queryString, [make,model,year,license_plate,fuel_type,weigh_kg,model_trim,engine_cc,length_mm,width_mm,height_mm
+        ,mpg_hwy,mpg_city,mpg_mixed,body_style,door_number,drive,engine_position,engine_type], (err,res,fields) => {
+        if(err){
+            console.log(err)
+            console.log("ERROR")
+            return
+        }
+        console.log("Inserted the new car: " , res)
+        
+    })
+    res.end()
+    
+})
+
 router.post('/user_create/', (req, res) => {
     console.log("Trying to post a new user")
 
@@ -24,16 +64,7 @@ router.post('/user_create/', (req, res) => {
     const salt = req.body.salt
     const drive_mode_def = req.body.drive_mode_def
 
-    //password = password.replace('\n','')
 
-    console.log(name)
-    console.log(last_name)
-    console.log(email)
-    console.log(phone_num)
-    console.log(password)
-    console.log(salt)
-    console.log(drive_mode_def)
-    console.log("--------------------------------------------")
 
     const queryString = "insert into users (name,last_name,email,phone_num,password,salt,drive_mode_def) VALUES (?, ?, ?, ?, ?, ?, ?);"
 
