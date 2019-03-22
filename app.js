@@ -9,6 +9,8 @@ const bodyParser = require('body-parser')
 
 const router = require('./routes/user.js')
 
+const router = require('./routes/car.js')
+
 app.use(router)
 
 app.use(bodyParser.urlencoded({extended: false}))
