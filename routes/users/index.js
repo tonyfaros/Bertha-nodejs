@@ -12,7 +12,7 @@ users.get('/messages', (req,res) => {
     console.log("Show me some mess... ")
     res.end()
 })
-
+/*
 users.post('/car_create/', (req, res) =>{
     
     const make = req.body.make
@@ -52,7 +52,7 @@ users.post('/car_create/', (req, res) =>{
     res.end()
     
 })
-
+*/
 users.post('/user_create/', (req, res) => {
     console.log("Trying to post a new user")
 
@@ -124,7 +124,7 @@ users.get('/user/:username', (req, res) => {
 
 users.get('/users', (req, res) => {
     
-
+    console.log("Trying to ger users")
     const connection = getConnection()
 
     const queryString = 'select * from users'
@@ -141,7 +141,6 @@ users.get('/users', (req, res) => {
 })
 
 const pool = mysql.createPool({
-    connectionLimit: 100,
     host: 'us-cdbr-iron-east-03.cleardb.net',
     //port: '3306',
     user: 'b2422c79d1fa8f',
