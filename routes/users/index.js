@@ -2,18 +2,18 @@
 const mysql = require('mysql')
 const bodyParser = require('body-parser')
 const express = require('express')
-const router = express.Router()
+const users = express.Router()
 
-router.use(bodyParser.urlencoded({extended: false}))
+users.use(bodyParser.urlencoded({extended: false}))
 
-router.use(express.static('././public'))
+users.use(express.static('././public'))
 
-router.get('/messages', (req,res) => {
+users.get('/messages', (req,res) => {
     console.log("Show me some mess... ")
     res.end()
 })
 
-router.post('/car_create/', (req, res) =>{
+users.post('/car_create/', (req, res) =>{
     
     const make = req.body.make
     const model = req.body.model
@@ -53,7 +53,7 @@ router.post('/car_create/', (req, res) =>{
     
 })
 
-router.post('/user_create/', (req, res) => {
+users.post('/user_create/', (req, res) => {
     console.log("Trying to post a new user")
 
     const name = req.body.name
@@ -84,7 +84,7 @@ router.post('/user_create/', (req, res) => {
     res.end()
 })
 
-router.get('/userId/:id', (req, res) => {
+users.get('/userId/:id', (req, res) => {
     console.log("Fetching user with id: " + req.params.id)
 
     const connection = getConnection()
@@ -103,7 +103,7 @@ router.get('/userId/:id', (req, res) => {
 
 })
 
-router.get('/user/:username', (req, res) => {
+users.get('/user/:username', (req, res) => {
     console.log("Fetching user with username: " + req.params.username)
 
     const connection = getConnection()
@@ -122,7 +122,7 @@ router.get('/user/:username', (req, res) => {
 
 })
 
-router.get('/users', (req, res) => {
+users.get('/users', (req, res) => {
     
 
     const connection = getConnection()
@@ -154,4 +154,4 @@ function getConnection(){
     return pool
 }
 
-module.exports = router
+module.exports = users
