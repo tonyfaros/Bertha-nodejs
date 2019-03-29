@@ -63,15 +63,17 @@ users.post('/user_create/', (req, res) => {
     var password = req.body.password
     const salt = req.body.salt
     const drive_mode_def = req.body.drive_mode_def
+    const _action = 'new'
 
 
 
-    const queryString = "insert into users (name,last_name,email,phone_num,password,salt,drive_mode_def) VALUES (?, ?, ?, ?, ?, ?, ?);"
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`create_user`(?,? ,?, ?, ?,? ,? ,?);"
+    
 
 
     //"INSERT INTO `heroku_cd69aac1f1eff94`.`users` (`name`, `last_name`, `email`, `phone_num`, `password`, `salt`, `drive_mode_def`) VALUES ('maria', 'pizarro', 'maria@gmail.com', '7565164', '1234', '1234', 'eco');
    // "
-    getConnection().query(queryString, [name,last_name,email,phone_num,password,salt,drive_mode_def], (err,res,fields) => {
+    getConnection().query(queryString, [name,last_name,email,phone_num,password,salt,drive_mode_def,_action], (err,res,fields) => {
         if(err){
             console.log(err)
             console.log("ERROR")
