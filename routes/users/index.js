@@ -132,7 +132,7 @@ users.get('/prueba', (req, res) => {
 })
 
 
-users.get('/create_group', (req, res) => {
+users.post('/create_group/', (req, res) => {
     console.log("Fetching LASTNAME: ")
 
     const connection = getConnection()
