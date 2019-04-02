@@ -144,9 +144,9 @@ users.post('/create_group/', (req, res) => {
     const description_group = req.body.description_group
     const action = 'new'
 
-    const query_new_group = "CALL `heroku_cd69aac1f1eff94`.`groups_data`('',?,?,?,  @id_out_group, @id_out_user );"
+    const query_new_group = "CALL `heroku_cd69aac1f1eff94`.`groups_data`('',?,?,?,?,?,  @id_out_group, @id_out_user );"
     const paramId = req.params.id
-    connection.query(query_new_group, [name_group,description_group,action], (err, rows)=>{
+    connection.query(query_new_group, [id_user,id_car,name_group,description_group,action], (err, rows)=>{
         if(err){
             res.sendStatus(500)
             console.log(err)
@@ -161,7 +161,7 @@ users.post('/create_group/', (req, res) => {
             if(err){
                 res.sendStatus(500)
                 console.log(err)
-                console.log("HERE: " + last_name)
+                console.log("HERE: ")
                 res.end()
                 return
             }
