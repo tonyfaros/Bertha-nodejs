@@ -105,6 +105,77 @@ users.get('/userId/:id', (req, res) => {
 
 })
 
+users.get('/prueba', (req, res) => {
+    console.log("Fetching LASTNAME: ")
+
+    const connection = getConnection()
+
+    const last_name = req.body.idUser
+
+    const queryString = " CALL `heroku_cd69aac1f1eff94`.`groups_data`( '', '122', '2', 'grupo 2', 'grupo 2', 'new', @id_out_group, @id_out_user ); "
+    const paramId = req.params.id
+    connection.query(queryString, (err, rows)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            console.log("HERE: " + last_name)
+            res.end()
+            return
+        }
+        var name = rows[0][0]["_id_out_group"]
+        var name2 = rows[0][0]["_id_out_userCar"]
+        //res.send(name)
+        console.log(name)
+        console.log(name2)
+    })
+
+})
+
+
+users.get('/create_group', (req, res) => {
+    console.log("Fetching LASTNAME: ")
+
+    const connection = getConnection()
+
+    const id_user = req.body.id_user
+    const id_car = req.body.id_car
+
+    const name_group = req.body.name_group
+    const description_group = req.body.description_group
+    const action = 'new'
+
+    const query_new_group = "CALL `heroku_cd69aac1f1eff94`.`groups_data`('',?,?,?,  @id_out_group, @id_out_user );"
+    const paramId = req.params.id
+    connection.query(queryString, [name_group,description_group,action], (err, rows)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            console.log("HERE: " + last_name)
+            res.end()
+            return
+        }
+        const query_link_user = "CALL `heroku_cd69aac1f1eff94`.`groups_per_user_data`('', ?, ?, 'new');"
+        const id_new_group = rows[0][0]["_id_out_group"]
+        const id_user_car = rows[0][0]["_id_out_userCar"]
+        connection.query(query_link_user, [id_new_group,id_user_car], (err, rows)=>{
+            if(err){
+                res.sendStatus(500)
+                console.log(err)
+                console.log("HERE: " + last_name)
+                res.end()
+                return
+            }
+            res.send("Exito")
+            console.log("Exito")
+        })
+
+    })
+
+})
+
+
+//CALL `heroku_cd69aac1f1eff94`.`prueba`(@out_name);
+
 users.get('/user/:username', (req, res) => {
     console.log("Fetching user with username: " + req.params.username)
 
@@ -147,7 +218,8 @@ const pool = mysql.createPool({
     //port: '3306',
     user: 'b2422c79d1fa8f',
     password: '8649bbd4',
-    database:'heroku_cd69aac1f1eff94'
+    database:'heroku_cd69aac1f1eff94',
+    multipleStatements: 'true'
 
 })
 

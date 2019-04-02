@@ -29,11 +29,12 @@ router.post('/car_create/', (req, res) =>{
     const engine_position = req.body.engine_position
     const engine_type = req.body.engine_type
 
-    const queryString = "insert into cars (make, model,year,licence_plate,fuel_type, weigh_kg,model_trim,engine_cc, length_mm, width_mm,height_mm,mpg_hwy,mpg_city, mpg_mixed,body_style,door_number,drive,engine_position,engine_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+    ///const queryString = "insert into cars (make, model,year,licence_plate,fuel_type, weigh_kg,model_trim,engine_cc, length_mm, width_mm,height_mm,mpg_hwy,mpg_city, mpg_mixed,body_style,door_number,drive,engine_position,engine_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
 
+    const queryString2 = "CALL `heroku_cd69aac1f1eff94`.`car_data`('','' ,? ,? ,? ,? ,? ,? ,?,? ,? ,? ,? ,? ,? , ?,? ,? ,? ,? ,? , 'new', @out_param);"
 
   
-    getConnection().query(queryString, [make,model,year,license_plate,fuel_type,weigh_kg,model_trim,engine_cc,length_mm,width_mm,height_mm
+    getConnection().query(queryString2, [make,model,year,license_plate,fuel_type,weigh_kg,model_trim,engine_cc,length_mm,width_mm,height_mm
         ,mpg_hwy,mpg_city,mpg_mixed,body_style,door_number,drive,engine_position,engine_type], (err,res,fields) => {
         if(err){
             console.log(err)
@@ -47,14 +48,35 @@ router.post('/car_create/', (req, res) =>{
     
 })
 
-
 router.get('/cars/', (req, res) => {
     
 
     const connection = getConnection()
 
-    const queryString = 'select * from cars'
-    connection.query(queryString, (err, rows, fields)=>{
+
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`car_data`('','' ,'' ,'' ,'' ,'' ,'' ,'' ,'','' ,'' ,'' ,'' ,'' ,'' , '','' ,'' ,'' ,'' ,'' , 'getAll', @out_param);"
+    connection.query(queryString,  (err, rows, fields)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            res.end()
+            return
+        }
+        res.json(rows)
+    })
+
+})
+
+
+router.get('/cars/:carId', (req, res) => {
+    
+
+    const connection = getConnection()
+
+    const carId = req.body.carId
+
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`car_data`(?,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'','' ,'' ,'' ,'' ,'' ,'' , '','' ,'' ,'' ,'' ,'' , 'getOne', @out_param);"
+    connection.query(queryString, [carId], (err, rows, fields)=>{
         if(err){
             res.sendStatus(500)
             console.log(err)
@@ -81,3 +103,5 @@ function getConnection(){
 }
 
 module.exports = router
+
+///CALL `heroku_cd69aac1f1eff94`.`car_data`('2','' ,'' ,'' ,'' ,'' ,'' ,'' ,'','' ,'' ,'' ,'' ,'' ,'' , '','' ,'' ,'' ,'' ,'' , 'get', @out_param);
