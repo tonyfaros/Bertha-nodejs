@@ -67,10 +67,7 @@ router.get('/cars/', (req, res) => {
 
 })
 
-
 router.get('/cars/:carId', (req, res) => {
-    
-
     const connection = getConnection()
 
     const carId = req.body.carId
@@ -85,7 +82,6 @@ router.get('/cars/:carId', (req, res) => {
         }
         res.json(rows)
     })
-
 })
 
 const pool = mysql.createPool({

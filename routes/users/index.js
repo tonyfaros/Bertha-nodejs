@@ -63,20 +63,21 @@ users.post('/user_create/', (req, res) => {
     var password = req.body.password
     const salt = req.body.salt
     const drive_mode_def = req.body.drive_mode_def
+    const car_def_id = req.body.car_def_id
     const _action = 'new'
 
 
 
-    const queryString = "CALL `heroku_cd69aac1f1eff94`.`create_user`(?,? ,?, ?, ?,? ,? ,?);"
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`create_user`('',?,?,?,?,?,?,?,?,?);"
     
 
 
     //"INSERT INTO `heroku_cd69aac1f1eff94`.`users` (`name`, `last_name`, `email`, `phone_num`, `password`, `salt`, `drive_mode_def`) VALUES ('maria', 'pizarro', 'maria@gmail.com', '7565164', '1234', '1234', 'eco');
    // "
-    getConnection().query(queryString, [name,last_name,email,phone_num,password,salt,drive_mode_def,_action], (err,res,fields) => {
+    getConnection().query(queryString, [name,last_name,email,phone_num,password,salt,drive_mode_def,car_def_id,_action], (err,res,fields) => {
         if(err){
             console.log(err)
-            console.log("ERROR")
+            console.log("Error")
             return
         }
         console.log("Inserted the new user: " , res)
@@ -133,7 +134,6 @@ users.get('/prueba', (req, res) => {
 
 
 users.post('/create_group/', (req, res) => {
-    console.log("Fetching LASTNAME: ")
 
     const connection = getConnection()
 
@@ -181,7 +181,7 @@ users.get('/user/:username', (req, res) => {
 
     const connection = getConnection()
 
-    const queryString = 'select users.password, users.salt from users where email = ?'
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`user_data`('','','',?,'','','','','','getPass')"
     const paramEmail = req.params.username
     connection.query(queryString, [paramEmail], (err, rows, fields)=>{
         if(err){
@@ -190,10 +190,10 @@ users.get('/user/:username', (req, res) => {
             res.end()
             return
         }
-        res.json(rows)
+        res.json(rows[0][0])
     })
-
 })
+
 
 users.get('/users', (req, res) => {
     
