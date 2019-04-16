@@ -15,6 +15,23 @@ users.get('/messages', (req,res) => {
 /*
 users.post('/car_create/', (req, res) =>{
     
+9.935652, -84.135630
+9.935224, -84.135377
+9.934890, -84.135142
+9.934510, -84.134917
+9.934214, -84.134713
+    9.933844, -84.134456
+    9.933400, -84.134209
+9.932956, -84.133930
+9.932523, -84.133608
+9.932195, -84.133404
+9.931338, -84.132895
+9.930743, -84.132496
+
+9.933058, -84.133878
+
+9.933844,-84.133930
+    
     const make = req.body.make
     const model = req.body.model
     const year = req.body.year
@@ -86,6 +103,67 @@ users.post('/user_create/', (req, res) => {
     //console.log(firstName + lastName + email+ password+driveMode)
     res.end()
 })
+
+
+
+users.get('/userGroup&Challenges/:id', (req, res) => {
+    console.log("Fetching user with id: " + req.params.id)
+
+    const connection = getConnection()
+
+    var allInfo = []
+
+    const paramId = req.params.id
+
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`get_AllChallenges`()";
+
+    
+    connection.query(queryString, (err, rows, fields)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            res.end()
+            return
+        }
+        console.log(" First ----------",rows)
+        allInfo.push(rows)
+
+        //console.log(allInfo)
+        //res.json(allInfo)
+
+        const queryString2 = "CALL `heroku_cd69aac1f1eff94`.`get_MyChallenges`(?);";
+ 
+        connection.query(queryString2, [paramId], (err, rows2, fields)=>{
+            if(err){
+                res.sendStatus(500)
+                console.log(err)
+                res.end()
+                return
+            }
+            allInfo.push(rows2)
+            //res.json(rows)
+    
+            console.log(" Second ----------",rows)
+
+
+            const queryString3 = "CALL `heroku_cd69aac1f1eff94`.`get_MyGroups`(?);";
+    
+            connection.query(queryString3, [paramId], (err, rows3, fields)=>{
+                if(err){
+                    res.sendStatus(500)
+                    console.log(err)
+                    res.end()
+                    return
+                }
+                allInfo.push(rows3)
+                //res.json(rows)
+                console.log(" Third ----------",rows)
+                res.json(allInfo)
+            })
+        })
+    })
+})
+
 
 users.get('/userId/:id', (req, res) => {
     console.log("Fetching user with id: " + req.params.id)
