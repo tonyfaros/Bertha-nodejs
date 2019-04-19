@@ -125,11 +125,8 @@ users.get('/userGroup&Challenges/:id', (req, res) => {
             res.end()
             return
         }
-        console.log(" First ----------",rows)
         allInfo.push(rows)
 
-        //console.log(allInfo)
-        //res.json(allInfo)
 
         const queryString2 = "CALL `heroku_cd69aac1f1eff94`.`get_MyChallenges`(?);";
  
@@ -141,10 +138,6 @@ users.get('/userGroup&Challenges/:id', (req, res) => {
                 return
             }
             allInfo.push(rows2)
-            //res.json(rows)
-    
-            console.log(" Second ----------",rows)
-
 
             const queryString3 = "CALL `heroku_cd69aac1f1eff94`.`get_MyGroups`(?);";
     
@@ -156,9 +149,9 @@ users.get('/userGroup&Challenges/:id', (req, res) => {
                     return
                 }
                 allInfo.push(rows3)
-                //res.json(rows)
-                console.log(" Third ----------",rows)
                 res.json(allInfo)
+
+                res.end()
             })
         })
     })
