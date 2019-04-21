@@ -85,7 +85,7 @@ users.post('/user_create/', (req, res) => {
 
 
 
-    const queryString = "CALL `heroku_cd69aac1f1eff94`.`create_user`('',?,?,?,?,?,?,?,?,?);"
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`user_data`('',?,?,?,?,?,?,?,?,?);"
     
 
 
