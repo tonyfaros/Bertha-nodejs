@@ -280,9 +280,9 @@ users.post('/link_challenge/', (req, res) => {
 
     const action = 'newChallenge'
 
-    const query_dropChallenge = "CALL `heroku_cd69aac1f1eff94`.`link_challengeXuser`( ?, ?, ?);"
+    const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`link_challengeXuser`( ?, ?, ?);"
 
-    connection.query(query_dropChallenge, [id_user,id_challenge,action], (err, rows)=>{
+    connection.query(query_addChallenge, [id_user,id_challenge,action], (err, rows)=>{
         if(err){
             res.sendStatus(500)
             console.log(err)
@@ -291,7 +291,7 @@ users.post('/link_challenge/', (req, res) => {
             return
         }
         
-        res.send(rows[0][0]["_id"])
+        res.send("Exito")
         console.log("Exito")
     })
 
