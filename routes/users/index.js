@@ -225,7 +225,7 @@ users.post('/create_group/', (req, res) => {
             res.end()
             return
         }
-        const query_link_user = "CALL `heroku_cd69aac1f1eff94`.`groups_per_user_data`('', ?, ?, 'new');"
+        /*const query_link_user = "CALL `heroku_cd69aac1f1eff94`.`groups_per_user_data`('', ?, ?, 'new');"
         const id_new_group = rows[0][0]["_id_out_group"]
         const id_user_car = rows[0][0]["_id_out_userCar"]
         connection.query(query_link_user, [id_new_group,id_user_car], (err, rows)=>{
@@ -238,8 +238,62 @@ users.post('/create_group/', (req, res) => {
             }
             res.send("Exito")
             console.log("Exito")
-        })
+        })*/
+        res.send("Exito")
+        console.log("Exito")
+    })
 
+})
+
+
+users.post('/drop_challenge/', (req, res) => {
+
+    const connection = getConnection()
+
+    const id_user = req.body.id_user
+    const id_challenge = req.body.id_challenge
+
+    const action = 'dropChallenge'
+
+    const query_dropChallenge = "CALL `heroku_cd69aac1f1eff94`.`link_challengeXuser`('', ?, ?, ?);"
+
+    connection.query(query_dropChallenge, [id_user,id_challenge,action], (err, rows)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            console.log("HERE: " + last_name)
+            res.end()
+            return
+        }
+        
+        res.send("Exito")
+        console.log("Exito")
+    })
+
+})
+
+users.post('/link_challenge/', (req, res) => {
+
+    const connection = getConnection()
+
+    const id_user = req.body.id_user
+    const id_challenge = req.body.id_challenge
+
+    const action = 'newChallenge'
+
+    const query_dropChallenge = "CALL `heroku_cd69aac1f1eff94`.`link_challengeXuser`(@inout_id, ?, ?, ?);"
+
+    connection.query(query_dropChallenge, [id_user,id_challenge,action], (err, rows)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            console.log("HERE: " + last_name)
+            res.end()
+            return
+        }
+        
+        res.send("Exito")
+        console.log("Exito")
     })
 
 })
