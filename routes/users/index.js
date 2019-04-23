@@ -250,13 +250,13 @@ users.post('/drop_challenge/', (req, res) => {
 
     const connection = getConnection()
 
-    const id_challengeXuser = req.body.id_user
-
+    const id_challenge = req.body.id_challenge
+    const id_user = req.body.id_user
     const action = 'dropChallenge'
 
-    const query_dropChallenge = "CALL `heroku_cd69aac1f1eff94`.`link_challengeXuser`(?, '', '', ?);"
+    const query_dropChallenge = "CALL `heroku_cd69aac1f1eff94`.`link_challengeXuser`('', ?, ?, ?);"
 
-    connection.query(query_dropChallenge, [id_challengeXuser,action], (err, rows)=>{
+    connection.query(query_dropChallenge, [id_challenge,id_user,action], (err, rows)=>{
         if(err){
             res.sendStatus(500)
             console.log(err)
