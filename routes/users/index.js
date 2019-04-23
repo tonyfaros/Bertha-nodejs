@@ -77,7 +77,7 @@ users.post('/user_create/', (req, res) => {
     const last_name = req.body.last_name
     const email = req.body.email
     const phone_num = req.body.phone_num
-    var password = req.body.password
+    const password = req.body.password
     const salt = req.body.salt
     const drive_mode_def = req.body.drive_mode_def
     const car_def_id = req.body.car_def_id
@@ -87,7 +87,6 @@ users.post('/user_create/', (req, res) => {
 
     const queryString = "CALL `heroku_cd69aac1f1eff94`.`user_data`('',?,?,?,?,?,?,?,?,?);"
     
-
 
     //"INSERT INTO `heroku_cd69aac1f1eff94`.`users` (`name`, `last_name`, `email`, `phone_num`, `password`, `salt`, `drive_mode_def`) VALUES ('maria', 'pizarro', 'maria@gmail.com', '7565164', '1234', '1234', 'eco');
    // "
