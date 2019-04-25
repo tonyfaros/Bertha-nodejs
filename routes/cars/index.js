@@ -46,10 +46,11 @@ router.post('/car_create/', (req, res) =>{
             return
         }
         console.log("Inserted the new car: " , res[0][0]["@last_id_car"])
+        res.send("yesss")
         
     })
     console.log("nope")
-    res.send("yesss")
+    ///res.send("yesss")
     res.end()
     
 })
