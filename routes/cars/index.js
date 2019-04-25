@@ -47,7 +47,7 @@ router.post('/car_create/', (req, res) =>{
             console.log("ERROR")
             return
         }
-        console.log("Inserted the new car: " , res[0][0]["@last_id_car"])
+        console.log("Inserted the new car: " , res2[0][0]["@last_id_car"])
         res.send(res2[0][0]["@last_id_car"])
         
     })
