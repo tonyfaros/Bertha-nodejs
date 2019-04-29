@@ -37,7 +37,7 @@ router.post('/car_create/', (req, res) =>{
 
     ///const queryString = "insert into cars (make, model,year,licence_plate,fuel_type, weigh_kg,model_trim,engine_cc, length_mm, width_mm,height_mm,mpg_hwy,mpg_city, mpg_mixed,body_style,door_number,drive,engine_position,engine_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
 
-    const queryString2 = "CALL `heroku_cd69aac1f1eff94`.`car_data`('',?,?, ?,? ,? ,? ,? ,? ,? ,?,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?, 'new', @out_param);"
+    const queryString2 = "CALL `heroku_cd69aac1f1eff94`.`car_data`('',? ,?, ?,? ,? ,? ,? ,? ,? ,?,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?, 'new', @out_param);"
 
   
     getConnection().query(queryString2, [_id_user,make,model,year,model_trim,license_plate,car_transmission,fuel_type,car_drive_conditions,car_tireSize,weigh_kg,engine_cc,length_mm,width_mm,height_mm
@@ -49,7 +49,7 @@ router.post('/car_create/', (req, res) =>{
         }
         console.log("Inserted the new car: " , res2[0][0]["@last_id_car"])
         res.send(res2[0][0]["@last_id_car"])
-        res.end()
+        //res.end()
     })
     console.log("nope")
     ///res.send("yesss")
@@ -83,6 +83,23 @@ router.get('/cars/:carId', (req, res) => {
 
     const queryString = "CALL `heroku_cd69aac1f1eff94`.`car_data`(?,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'','' ,'' ,'' ,'' ,'' ,'' , '','' ,'' ,'' ,'' ,'' , 'getOne', @out_param);"
     connection.query(queryString, [carId], (err, rows, fields)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            res.end()
+            return
+        }
+        res.json(rows)
+    })
+})
+
+router.get('/carsxuser/:userID', (req, res) => {
+    const connection = getConnection()
+
+    const userID = req.body.userID
+
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`car_data`('',?,'', '','' ,'' ,'' ,'' ,'' ,'' ,'','','' ,'' ,'' ,'','' ,'' ,'' ,'' ,'' ,'' ,'' ,'', 'getFromUser', @out_param);"
+    connection.query(queryString, [userID], (err, rows, fields)=>{
         if(err){
             res.sendStatus(500)
             console.log(err)
