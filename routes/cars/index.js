@@ -96,9 +96,11 @@ router.get('/cars/:carId', (req, res) => {
 router.get('/carsxuser/:userID', (req, res) => {
     const connection = getConnection()
 
-    const userID = req.body.userID
+    const userID = req.params.userID
+
 
     const queryString = "CALL `heroku_cd69aac1f1eff94`.`car_data`('',?,'', '','' ,'' ,'' ,'' ,'' ,'' ,'','','' ,'' ,'' ,'','' ,'' ,'' ,'' ,'' ,'' ,'' ,'', 'getFromUser', @out_param);"
+   
     connection.query(queryString, [userID], (err, rows, fields)=>{
         if(err){
             res.sendStatus(500)
@@ -106,7 +108,7 @@ router.get('/carsxuser/:userID', (req, res) => {
             res.end()
             return
         }
-        res.json(rows)
+        res.json(rows[0])
     })
 })
 
