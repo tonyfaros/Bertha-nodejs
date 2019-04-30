@@ -296,6 +296,32 @@ users.post('/link_challenge/', (req, res) => {
 
 })
 
+users.post('/set_newCar/', (req, res) => {
+
+    const connection = getConnection()
+
+    const id_user = req.body.id_user
+    const id_car = req.body.id_car
+
+    const action = 'changeCarDef'
+
+    const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`user_data`(?,'','','','','','','',?,?)"
+
+    connection.query(query_addChallenge, [id_user,id_car,action], (err, rows)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            console.log("HERE: Set new car")
+            res.end()
+            return
+        }
+        
+        res.send("Exito")
+        console.log("Exito")
+    })
+
+})
+
 
 //CALL `heroku_cd69aac1f1eff94`.`prueba`(@out_name);
 
