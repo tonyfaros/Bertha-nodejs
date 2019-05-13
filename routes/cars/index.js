@@ -34,9 +34,6 @@ router.post('/car_create/', (req, res) =>{
     const car_tireSize = req.body.car_tireSize
 
     
-
-    ///const queryString = "insert into cars (make, model,year,licence_plate,fuel_type, weigh_kg,model_trim,engine_cc, length_mm, width_mm,height_mm,mpg_hwy,mpg_city, mpg_mixed,body_style,door_number,drive,engine_position,engine_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
-
     const queryString2 = "CALL `heroku_cd69aac1f1eff94`.`car_data`('',? ,?, ?,? ,? ,? ,? ,? ,? ,?,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?, 'new', @out_param);"
 
   
