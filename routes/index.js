@@ -5,6 +5,8 @@ const cars = require('./cars');
 
 routes.use('/users', users);
 routes.use('/cars', cars);
+routes.use('/challenges', challenges);
+routes.use('/groups', groups);
 
 
 routes.get('/', (req, res) => {
