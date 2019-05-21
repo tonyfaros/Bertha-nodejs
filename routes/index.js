@@ -2,6 +2,8 @@ const routes = require('express').Router();
 
 const users = require('./users');
 const cars = require('./cars');
+const challenges = require('./challenges');
+const groups = require('./groups');
 
 routes.use('/users', users);
 routes.use('/cars', cars);
