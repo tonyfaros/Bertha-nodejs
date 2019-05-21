@@ -2,14 +2,14 @@
 const mysql = require('mysql')
 const bodyParser = require('body-parser')
 const express = require('express')
-const users = express.Router()
+const challenges = express.Router()
 
 
-users.use(bodyParser.urlencoded({extended: false}))
+challenges.use(bodyParser.urlencoded({extended: false}))
 
-users.use(express.static('././public'))
+challenges.use(express.static('././public'))
 
-users.post('/link_challenge/', (req, res) => {
+challenges.post('/link_challenge/', (req, res) => {
 
     const connection = getConnection()
 
@@ -35,7 +35,7 @@ users.post('/link_challenge/', (req, res) => {
 
 })
 
-users.post('/drop_challenge/', (req, res) => {
+challenges.post('/drop_challenge/', (req, res) => {
 
     const connection = getConnection()
 

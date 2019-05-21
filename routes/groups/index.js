@@ -2,15 +2,15 @@
 const mysql = require('mysql')
 const bodyParser = require('body-parser')
 const express = require('express')
-const users = express.Router()
+const groups = express.Router()
 
 
-users.use(bodyParser.urlencoded({extended: false}))
+groups.use(bodyParser.urlencoded({extended: false}))
 
-users.use(express.static('././public'))
+groups.use(express.static('././public'))
 
 
-users.post('/create_group/', (req, res) => {
+groups.post('/create_group/', (req, res) => {
 
     const connection = getConnection()
 

@@ -1,13 +1,13 @@
 const mysql = require('mysql')
 const bodyParser = require('body-parser')
 const express = require('express')
-const router = express.Router()
+const cars = express.Router()
 
-router.use(bodyParser.urlencoded({extended: false}))
+cars.use(bodyParser.urlencoded({extended: false}))
 
-router.use(express.static('././public'))
+cars.use(express.static('././public'))
 
-router.post('/car_create/', (req, res) =>{
+cars.post('/car_create/', (req, res) =>{
 
     const _id_user = req.body._id_user
     const make = req.body.make
@@ -54,7 +54,7 @@ router.post('/car_create/', (req, res) =>{
     
 })
 
-router.get('/cars/', (req, res) => {
+cars.get('/cars/', (req, res) => {
     
 
     const connection = getConnection()
@@ -73,7 +73,7 @@ router.get('/cars/', (req, res) => {
 
 })
 
-router.get('/cars/:carId', (req, res) => {
+cars.get('/cars/:carId', (req, res) => {
     const connection = getConnection()
 
     const carId = req.body.carId
@@ -90,7 +90,7 @@ router.get('/cars/:carId', (req, res) => {
     })
 })
 
-router.get('/carsxuser/:userID', (req, res) => {
+cars.get('/carsxuser/:userID', (req, res) => {
     const connection = getConnection()
 
     const userID = req.params.userID
@@ -123,6 +123,6 @@ function getConnection(){
     return pool
 }
 
-module.exports = router
+module.exports = cars
 
 ///CALL `heroku_cd69aac1f1eff94`.`car_data`('2','' ,'' ,'' ,'' ,'' ,'' ,'' ,'','' ,'' ,'' ,'' ,'' ,'' , '','' ,'' ,'' ,'' ,'' , 'get', @out_param);
