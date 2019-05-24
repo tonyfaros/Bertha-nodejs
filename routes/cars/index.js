@@ -1,11 +1,12 @@
 const mysql = require('mysql')
 const bodyParser = require('body-parser')
 const express = require('express')
-const cars = express.Router()
-
+const cars = express.Router();
+const bd_connection = require('../bd_connection.js');
 cars.use(bodyParser.urlencoded({extended: false}))
 
 cars.use(express.static('././public'))
+
 
 cars.post('/car_create/', (req, res) =>{
 
@@ -36,8 +37,9 @@ cars.post('/car_create/', (req, res) =>{
     
     const queryString2 = "CALL `heroku_cd69aac1f1eff94`.`car_data`('',? ,?, ?,? ,? ,? ,? ,? ,? ,?,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?, 'new', @out_param);"
 
-  
-    getConnection().query(queryString2, [_id_user,make,model,year,model_trim,license_plate,car_transmission,fuel_type,car_drive_conditions,car_tireSize,weigh_kg,engine_cc,length_mm,width_mm,height_mm
+    //bd_connection.
+    //getConnection()
+    bd_connection.query(queryString2, [_id_user,make,model,year,model_trim,license_plate,car_transmission,fuel_type,car_drive_conditions,car_tireSize,weigh_kg,engine_cc,length_mm,width_mm,height_mm
         ,lkm_hwy,lkm_city,lkm_mixed,body_style,door_number,drive,engine_position,engine_type], (err,res2,fields) => {
         if(err){
             console.log(err)
@@ -108,7 +110,7 @@ cars.get('/carsxuser/:userID', (req, res) => {
         res.json(rows[0])
     })
 })
-
+/*
 const pool = mysql.createPool({
     connectionLimit: 100,
     host: 'us-cdbr-iron-east-03.cleardb.net',
@@ -122,7 +124,7 @@ const pool = mysql.createPool({
 function getConnection(){
     return pool
 }
-
+*/
 module.exports = cars
 
 ///CALL `heroku_cd69aac1f1eff94`.`car_data`('2','' ,'' ,'' ,'' ,'' ,'' ,'' ,'','' ,'' ,'' ,'' ,'' ,'' , '','' ,'' ,'' ,'' ,'' , 'get', @out_param);
