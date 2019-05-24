@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const users = express.Router()
 
+const bd_connection = require('../bd_connection.js');
+
 users.use(bodyParser.urlencoded({extended: false}))
 
 users.use(express.static('././public'))
@@ -32,7 +34,7 @@ users.post('/user_create/', (req, res) => {
 
     //"INSERT INTO `heroku_cd69aac1f1eff94`.`users` (`name`, `last_name`, `email`, `phone_num`, `password`, `salt`, `drive_mode_def`) VALUES ('maria', 'pizarro', 'maria@gmail.com', '7565164', '1234', '1234', 'eco');
    // "
-    getConnection().query(queryString, [name,last_name,email,phone_num,password,salt,drive_mode_def,car_def_id,_action], (err,res,fields) => {
+   bd_connection.query(queryString, [name,last_name,email,phone_num,password,salt,drive_mode_def,car_def_id,_action], (err,res,fields) => {
         if(err){
             console.log(err)
             console.log("Error")
@@ -50,7 +52,7 @@ users.post('/user_create/', (req, res) => {
 users.get('/userGroup&Challenges/:id', (req, res) => {
     console.log("Fetching user with id: " + req.params.id)
 
-    const connection = getConnection()
+    const connection = bd_connection
 
     var allInfo = []
 
@@ -102,7 +104,7 @@ users.get('/userGroup&Challenges/:id', (req, res) => {
 users.get('/userId/:id', (req, res) => {
     console.log("Fetching user with id: " + req.params.id)
 
-    const connection = getConnection()
+    const connection = bd_connection
 
     const queryString = 'select * from users where id = ?'
     const paramId = req.params.id
@@ -121,7 +123,7 @@ users.get('/userId/:id', (req, res) => {
 users.get('/prueba', (req, res) => {
     console.log("Fetching LASTNAME: ")
 
-    const connection = getConnection()
+    const connection = bd_connection
 
     const last_name = req.body.idUser
 
@@ -148,7 +150,7 @@ users.get('/prueba', (req, res) => {
 
 users.post('/set_newCar/', (req, res) => {
 
-    const connection = getConnection()
+    const connection = bd_connection
 
     const id_user = req.body.id_user
     const id_car = req.body.id_car
@@ -178,7 +180,7 @@ users.post('/set_newCar/', (req, res) => {
 users.get('/user/:username', (req, res) => {
     console.log("Fetching user with username: " + req.params.username)
 
-    const connection = getConnection()
+    const connection = bd_connection
 
     const queryString = "CALL `heroku_cd69aac1f1eff94`.`user_data`('','','',?,'','','','','','getPass')"
     const paramEmail = req.params.username
@@ -197,7 +199,7 @@ users.get('/user/:username', (req, res) => {
 users.get('/users', (req, res) => {
     
     console.log("Trying to ger users")
-    const connection = getConnection()
+    const connection = bd_connection
 
     const queryString = 'select * from users'
     connection.query(queryString, (err, rows, fields)=>{
@@ -212,18 +214,5 @@ users.get('/users', (req, res) => {
 
 })
 
-const pool = mysql.createPool({
-    host: 'us-cdbr-iron-east-03.cleardb.net',
-    //port: '3306',
-    user: 'b2422c79d1fa8f',
-    password: '8649bbd4',
-    database:'heroku_cd69aac1f1eff94',
-    multipleStatements: 'true'
-
-})
-
-function getConnection(){
-    return pool
-}
 
 module.exports = users

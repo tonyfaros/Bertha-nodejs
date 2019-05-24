@@ -1,8 +1,9 @@
-
-const mysql = require('mysql')
 const bodyParser = require('body-parser')
 const express = require('express')
 const challenges = express.Router()
+
+
+const bd_connection = require('../bd_connection.js');
 
 
 challenges.use(bodyParser.urlencoded({extended: false}))
@@ -11,7 +12,7 @@ challenges.use(express.static('././public'))
 
 challenges.post('/link_challenge/', (req, res) => {
 
-    const connection = getConnection()
+    const connection = bd_connection
 
     const id_user = req.body.id_user
     const id_challenge = req.body.id_challenge
@@ -37,7 +38,7 @@ challenges.post('/link_challenge/', (req, res) => {
 
 challenges.post('/drop_challenge/', (req, res) => {
 
-    const connection = getConnection()
+    const connection = bd_connection
 
     const id_challenge = req.body.id_challenge
     const id_user = req.body.id_user
@@ -59,20 +60,5 @@ challenges.post('/drop_challenge/', (req, res) => {
     })
 
 })
-
-
-const pool = mysql.createPool({
-    host: 'us-cdbr-iron-east-03.cleardb.net',
-    //port: '3306',
-    user: 'b2422c79d1fa8f',
-    password: '8649bbd4',
-    database:'heroku_cd69aac1f1eff94',
-    multipleStatements: 'true'
-
-})
-
-function getConnection(){
-    return pool
-}
 
 module.exports = challenges

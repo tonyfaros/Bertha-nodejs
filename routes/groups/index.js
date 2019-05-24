@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const groups = express.Router()
 
+const bd_connection = require('../bd_connection.js');
 
 groups.use(bodyParser.urlencoded({extended: false}))
 
@@ -12,7 +13,7 @@ groups.use(express.static('././public'))
 
 groups.post('/create_group/', (req, res) => {
 
-    const connection = getConnection()
+    const connection = bd_connection
 
     const id_user = req.body.id_user
     const id_car = req.body.id_car
@@ -38,18 +39,6 @@ groups.post('/create_group/', (req, res) => {
 
 })
 
-const pool = mysql.createPool({
-    host: 'us-cdbr-iron-east-03.cleardb.net',
-    //port: '3306',
-    user: 'b2422c79d1fa8f',
-    password: '8649bbd4',
-    database:'heroku_cd69aac1f1eff94',
-    multipleStatements: 'true'
 
-})
-
-function getConnection(){
-    return pool
-}
 
 module.exports = groups
