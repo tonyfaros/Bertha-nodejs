@@ -59,7 +59,7 @@ cars.post('/car_create/', (req, res) =>{
 cars.get('/cars/', (req, res) => {
     
 
-    const connection = getConnection()
+    const connection = bd_connection//getConnection()
 
 
     const queryString = "CALL `heroku_cd69aac1f1eff94`.`car_data`('','' ,'' ,'' ,'' ,'' ,'' ,'' ,'','' ,'' ,'' ,'' ,'' ,'' , '','' ,'' ,'' ,'' ,'' , 'getAll', @out_param);"
@@ -76,7 +76,7 @@ cars.get('/cars/', (req, res) => {
 })
 
 cars.get('/cars/:carId', (req, res) => {
-    const connection = getConnection()
+    const connection = bd_connection //getConnection()
 
     const carId = req.body.carId
 
@@ -93,7 +93,7 @@ cars.get('/cars/:carId', (req, res) => {
 })
 
 cars.get('/carsxuser/:userID', (req, res) => {
-    const connection = getConnection()
+    const connection = bd_connection//getConnection()
 
     const userID = req.params.userID
 
