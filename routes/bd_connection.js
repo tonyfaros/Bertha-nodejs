@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-exports.pool = mysql.createPool({
+const bd_connection = mysql.createPool({
     connectionLimit: 100,
     host: 'us-cdbr-iron-east-03.cleardb.net',
     //port: '3306',
@@ -13,3 +13,4 @@ function getConnection(){
     return pool
 }
 
+module.exports = bd_connection
