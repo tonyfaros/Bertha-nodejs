@@ -4,7 +4,7 @@ const users = require('./users');
 const cars = require('./cars');
 const challenges = require('./challenges');
 const groups = require('./groups');
-const fuelLog = require('./fuelLog');
+const fuelLog = require('./fuel_log');
 
 routes.use('/users', users);
 routes.use('/cars', cars);
