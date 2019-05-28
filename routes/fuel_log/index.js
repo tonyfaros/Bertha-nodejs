@@ -13,22 +13,22 @@ fuelLog.post('/fuelLog/', (req, res) => {
 
     const connection = bd_connection
 
-    const idUser = req.params.idUser
-    const idCar = req.params.idCar
-    const date = req.params.date
-    const time = req.params.time
-    const odometer_current = req.params.odometer_current
-    const km_traveled =  req.params.km_traveled
-    const liters_qtty = req.params.liters_qtty
-    const total_price = req.params.total_price
-    const price_perLiter = req.params.price_perLiter
-    const fuel_type = req.params.fuel_type
-    const place_fuelUp = req.params.place_fuelUp
-    const city_drivingPrctg = req.params.city_drivingPrctg
-    const partial_fuelUp = req.params.partial_fuelUp
+    const idUser = req.body.idUser
+    const idCar = req.body.idCar
+    const date = req.body.date
+    const time = req.body.time
+    const odometer_current = req.body.odometer_current
+    const km_traveled =  req.body.km_traveled
+    const liters_qtty = req.body.liters_qtty
+    const total_price = req.body.total_price
+    const price_perLiter = req.body.price_perLiter
+    const fuel_type = req.body.fuel_type
+    const place_fuelUp = req.body.place_fuelUp
+    const city_drivingPrctg = req.body.city_drivingPrctg
+    const partial_fuelUp = req.body.partial_fuelUp
     const _action = 'new'
 
-    const queryString = "CALL `heroku_cd69aac1f1eff94`.`fuelLogs_data`(?, ?, ?,?, ?, ?,?, ?, ?, ?, ?, ?,?,?,?);"
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`fuelLogs_data`(?, ?, ?,?, ?, ?,?, ?, ?, ?, ?, ?,?,?);"
 
 
     connection.query(queryString,[idUser,idCar,date,time,odometer_current,km_traveled,liters_qtty,total_price,price_perLiter,
@@ -50,8 +50,8 @@ fuelLog.get('/getLogsxUser/', (req, res) => {
 
     const connection = bd_connection
 
-    const idUser = req.params.idUser
-    const idCar = req.params.idCar
+    const idUser = req.body.idUser
+    const idCar = req.body.idCar
 
     const _action = 'getAllFromUser'
 
