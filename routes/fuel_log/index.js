@@ -28,7 +28,7 @@ fuelLog.post('/fuelLog/', (req, res) => {
     const partial_fuelUp = req.params.partial_fuelUp
     const _action = 'new'
 
-    const queryString = "CALL `heroku_cd69aac1f1eff94`.`fuelLogs_data`(?, ?, ?,?, ?, ?,?, ?, ?, ?, ?, ?,?,?);"
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`fuelLogs_data`(?, ?, ?,?, ?, ?,?, ?, ?, ?, ?, ?,?,?,?);"
 
 
     connection.query(queryString,[idUser,idCar,date,time,odometer_current,km_traveled,liters_qtty,total_price,price_perLiter,
