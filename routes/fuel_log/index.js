@@ -40,7 +40,7 @@ fuelLog.post('/fuelLog/', (req, res) => {
             res.end()
             return
         }
-        console.log(name)
+        console.log("Exito posting log")
     })
 
 })
