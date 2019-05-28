@@ -4,11 +4,13 @@ const users = require('./users');
 const cars = require('./cars');
 const challenges = require('./challenges');
 const groups = require('./groups');
+const fuelLog = require('./fuelLog');
 
 routes.use('/users', users);
 routes.use('/cars', cars);
 routes.use('/challenges', challenges);
 routes.use('/groups', groups);
+routes.use('/fuelLog', fuelLog);
 
 
 routes.get('/', (req, res) => {
