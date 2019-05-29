@@ -53,7 +53,7 @@ fuelLog.get('/getLogsxUser/', (req, res) => {
 
     const _action = 'getAllFromUser'
 
-    const queryString = " CALL `heroku_cd69aac1f1eff94`.`fuelLogs_data`(?, ?, '', '', '', '', '', '','', '', '',?);"
+    const queryString = " CALL `heroku_cd69aac1f1eff94`.`fuelLogs_data`(?, ?, '','', '', '','', '','', '', '', '','',?);"
 
     connection.query(queryString,[idUser,idCar,_action], (err, rows)=>{
         if(err){
