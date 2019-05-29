@@ -43,13 +43,13 @@ fuelLog.post('/fuel_log/', (req, res) => {
 
 })
 
-fuelLog.get('/getLogsxUser/', (req, res) => {
+fuelLog.get('/getLogsxUser/:idUser/:idCar', (req, res) => {
     console.log("Getting the logs from user") 
 
     const connection = bd_connection
 
-    const idUser = req.body.idUser
-    const idCar = req.body.idCar
+    const idUser = req.params.idUser
+    const idCar = req.params.idCar
 
     console.log(idCar)
     console.log(idUser)
