@@ -62,7 +62,7 @@ fuelLog.get('/getLogsxUser/', (req, res) => {
             res.end()
             return
         }
-        console.log(name)
+        res.send.json(rows)
         res.json(rows)
     })
 
