@@ -33,10 +33,8 @@ fuelLog.post('/fuel_log/', (req, res) => {
     bd_connection.query(queryString,[idUser,idCar,date,time,odometer_current,km_traveled,liters_qtty,total_price,price_perLiter,
                         fuel_type,place_fuelUp,city_drivingPrctg,partial_fuelUp,_action], (err, rows)=>{
         if(err){
-            res.sendStatus(500)
             console.log(err)
             console.log("Here: Fuel log error")
-            res.end()
             return
         }
         console.log("Success posting log")
