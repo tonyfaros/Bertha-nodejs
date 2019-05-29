@@ -35,11 +35,11 @@ cars.post('/car_create/', (req, res) =>{
     const car_tireSize = req.body.car_tireSize
 
     
-    const queryString2 = "CALL `heroku_cd69aac1f1eff94`.`car_data`('',? ,?, ?,? ,? ,? ,? ,? ,? ,?,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?, 'new', @out_param);"
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`car_data`('',? ,?, ?,? ,? ,? ,? ,? ,? ,?,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?, 'new', @out_param);"
 
     //bd_connection.
     //getConnection()
-    bd_connection.query(queryString2, [_id_user,make,model,year,model_trim,license_plate,car_transmission,fuel_type,car_drive_conditions,car_tireSize,weigh_kg,engine_cc,length_mm,width_mm,height_mm
+    bd_connection.query(queryString, [_id_user,make,model,year,model_trim,license_plate,car_transmission,fuel_type,car_drive_conditions,car_tireSize,weigh_kg,engine_cc,length_mm,width_mm,height_mm
         ,lkm_hwy,lkm_city,lkm_mixed,body_style,door_number,drive,engine_position,engine_type], (err,res2,fields) => {
         if(err){
             console.log(err)

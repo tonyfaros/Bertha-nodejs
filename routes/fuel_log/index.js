@@ -11,7 +11,6 @@ fuelLog.use(express.static('././public'))
 fuelLog.post('/fuel_log/', (req, res) => {
     console.log("Posting new log")
 
-    const connection = bd_connection
 
     const idUser = req.body.idUser
     const idCar = req.body.idCar
@@ -31,7 +30,7 @@ fuelLog.post('/fuel_log/', (req, res) => {
     const queryString = "CALL `heroku_cd69aac1f1eff94`.`fuelLogs_data`(?, ?, ?,?, ?, ?,?, ?, ?, ?, ?, ?,?,?);"
 
 
-    connection.query(queryString,[idUser,idCar,date,time,odometer_current,km_traveled,liters_qtty,total_price,price_perLiter,
+    bd_connection.query(queryString,[idUser,idCar,date,time,odometer_current,km_traveled,liters_qtty,total_price,price_perLiter,
                         fuel_type,place_fuelUp,city_drivingPrctg,partial_fuelUp,_action], (err, rows)=>{
         if(err){
             res.sendStatus(500)
