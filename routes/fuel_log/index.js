@@ -55,17 +55,17 @@ fuelLog.get('/getLogsxUser/', (req, res) => {
 
     const queryString = " CALL `heroku_cd69aac1f1eff94`.`fuelLogs_data`(?, ?, '', '', '', '', '', '','', '', '',?);"
 
-
     connection.query(queryString,[idUser,idCar,_action], (err, rows)=>{
         if(err){
-            res.sendStatus(500)
             console.log(err)
             console.log("Here: Fuel log error")
             res.end()
             return
         }
         console.log(name)
+        res.json(rows)
     })
+
 
 })
 

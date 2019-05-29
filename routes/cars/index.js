@@ -58,8 +58,7 @@ cars.post('/car_create/', (req, res) =>{
 cars.get('/cars/', (req, res) => {
     
 
-    const connection = bd_connection//getConnection()
-
+    const connection = bd_connection
 
     const queryString = "CALL `heroku_cd69aac1f1eff94`.`car_data`('','' ,'' ,'' ,'' ,'' ,'' ,'' ,'','' ,'' ,'' ,'' ,'' ,'' , '','' ,'' ,'' ,'' ,'' , 'getAll', @out_param);"
     connection.query(queryString,  (err, rows, fields)=>{
