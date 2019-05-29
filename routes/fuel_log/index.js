@@ -51,6 +51,9 @@ fuelLog.get('/getLogsxUser/', (req, res) => {
     const idUser = req.body.idUser
     const idCar = req.body.idCar
 
+    console.log(idCar)
+    console.log(idUser)
+    
     const _action = 'getAllFromUser'
 
     const queryString = " CALL `heroku_cd69aac1f1eff94`.`fuelLogs_data`(?, ?, '','', '', '','', '','', '', '', '','',?);"
