@@ -39,6 +39,7 @@ fuelLog.post('/fuel_log/', (req, res) => {
         }
         console.log("Success posting log")
     })
+    res.end()
 
 })
 
