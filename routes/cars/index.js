@@ -1,4 +1,4 @@
-const mysql = require('mysql')
+
 const bodyParser = require('body-parser')
 const express = require('express')
 const cars = express.Router();
@@ -50,7 +50,6 @@ cars.post('/car_create/', (req, res) =>{
         res.send(res2[0][0])
         //res.end()
     })
-    console.log("nope")
     ///res.send("yesss")
     //res.end()
     

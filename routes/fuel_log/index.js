@@ -8,7 +8,7 @@ fuelLog.use(bodyParser.urlencoded({extended: false}))
 
 fuelLog.use(express.static('././public'))
 
-fuelLog.post('/fuelLog/', (req, res) => {
+fuelLog.post('/fuel_log/', (req, res) => {
     console.log("Posting new log")
 
     const connection = bd_connection
@@ -40,7 +40,7 @@ fuelLog.post('/fuelLog/', (req, res) => {
             res.end()
             return
         }
-        console.log("Exito posting log")
+        console.log("Success posting log")
     })
 
 })
