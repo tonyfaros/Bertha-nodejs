@@ -65,7 +65,7 @@ fuelLog.get('/getLogsxUser/:idUser/:idCar', (req, res) => {
             res.end()
             return
         }
-        res.json(rows)
+        res.json(rows[0])
     })
 
 
