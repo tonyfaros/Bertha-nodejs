@@ -174,6 +174,32 @@ users.post('/set_newCar/', (req, res) => {
 
 })
 
+users.post('/set_newDriveMode/', (req, res) => {
+
+    const connection = bd_connection
+
+    const id_user = req.body.id_user
+    const drive_mode = req.body.drive_mode
+
+    const action = 'changeDriveMode'
+
+    const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`user_data`(?,'','','','','','',?,'',?)"
+
+    connection.query(query_addChallenge, [id_user,drive_mode,action], (err, rows)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            console.log("HERE: Set new drive mode")
+            res.end()
+            return
+        }
+        
+        res.send("Exito")
+        console.log("Exito")
+    })
+
+})
+
 
 //CALL `heroku_cd69aac1f1eff94`.`prueba`(@out_name);
 
