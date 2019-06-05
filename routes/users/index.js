@@ -34,17 +34,20 @@ users.post('/user_create/', (req, res) => {
 
     //"INSERT INTO `heroku_cd69aac1f1eff94`.`users` (`name`, `last_name`, `email`, `phone_num`, `password`, `salt`, `drive_mode_def`) VALUES ('maria', 'pizarro', 'maria@gmail.com', '7565164', '1234', '1234', 'eco');
    // "
-   bd_connection.query(queryString, [name,last_name,email,phone_num,password,salt,drive_mode_def,car_def_id,_action], (err,res,fields) => {
+   bd_connection.query(queryString, [name,last_name,email,phone_num,password,salt,drive_mode_def,car_def_id,_action], (err,res2,fields) => {
         if(err){
             console.log(err)
             console.log("Error")
             return
         }
-        console.log("Inserted the new user: " , res)
+        console.log("Inserted the new user")
+
+        res.send(res2[0][0]["@last_id_user"])
         
     })
+    
     //console.log(firstName + lastName + email+ password+driveMode)
-    res.end()
+    //res.end()
 })
 
 
