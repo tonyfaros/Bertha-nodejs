@@ -217,7 +217,15 @@ users.get('/user/:username', (req, res) => {
             res.end()
             return
         }
-        res.json(rows[0][0])
+        if(rows[0][0]){
+            console.log("rows")
+            res.json(rows[0][0])
+        }
+        else{
+            console.log("Not found")
+            res.json("res:not found")
+        }
+        
     })
 })
 
