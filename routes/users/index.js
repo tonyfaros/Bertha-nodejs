@@ -42,7 +42,7 @@ users.post('/user_create/', (req, res) => {
         }
         console.log("Inserted the new user")
 
-        res.send(res2[0][0]["@last_id_user"])
+        res.send(res2)
         
     })
     
