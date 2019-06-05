@@ -160,7 +160,7 @@ users.post('/set_newCar/', (req, res) => {
 
     const action = 'changeCarDef'
 
-    const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`user_data`(?,'','','','','','','',?,?)"
+    const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`user_data`(?,'','','','','','','',?,'',?)"
 
     connection.query(query_addChallenge, [id_user,id_car,action], (err, rows)=>{
         if(err){
@@ -186,7 +186,7 @@ users.post('/set_newDriveMode/', (req, res) => {
 
     const action = 'changeDriveMode'
 
-    const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`user_data`(?,'','','','','','',?,'',?)"
+    const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`user_data`(?,'','','','','','',?,'','',?)"
 
     connection.query(query_addChallenge, [id_user,drive_mode,action], (err, rows)=>{
         if(err){
@@ -212,7 +212,7 @@ users.get('/user/:username', (req, res) => {
     const connection = bd_connection
     var response = []
 
-    const queryString = "CALL `heroku_cd69aac1f1eff94`.`user_data`('','','',?,'','','','','','getPass')"
+    const queryString = "CALL `heroku_cd69aac1f1eff94`.`user_data`('','','',?,'','','','','','','getPass')"
     const paramEmail = req.params.username
     connection.query(queryString, [paramEmail], (err, rows, fields)=>{
         if(err){
