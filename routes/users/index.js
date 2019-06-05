@@ -207,6 +207,7 @@ users.get('/user/:username', (req, res) => {
     console.log("Fetching user with username: " + req.params.username)
 
     const connection = bd_connection
+    var response = []
 
     const queryString = "CALL `heroku_cd69aac1f1eff94`.`user_data`('','','',?,'','','','','','getPass')"
     const paramEmail = req.params.username
@@ -218,8 +219,10 @@ users.get('/user/:username', (req, res) => {
             return
         }
         if(rows[0][0]){
+            response.push(rows[0][0])
+            response[0].Response = "Found"
             console.log("rows")
-            res.json(rows[0][0])
+            res.json(response)
         }
         else{
             console.log("Not found")
