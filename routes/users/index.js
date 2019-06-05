@@ -223,7 +223,7 @@ users.get('/user/:username', (req, res) => {
         }
         else{
             console.log("Not found")
-            res.json("res:not found")
+            res.status(200).json({ Response: 'Not found!' });
         }
         
     })
