@@ -222,7 +222,7 @@ users.get('/user/:username', (req, res) => {
             response.push(rows[0][0])
             response[0].Response = "Found"
             console.log("rows")
-            res.json(response)
+            res.json(response[0])
         }
         else{
             console.log("Not found")
