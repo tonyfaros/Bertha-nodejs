@@ -24,16 +24,16 @@ groups.post('/create_group/', (req, res) => {
 
     const query_new_group = "CALL `heroku_cd69aac1f1eff94`.`groups_data`('',?,?,?,?,?);"
     const paramId = req.params.id
-    connection.query(query_new_group, [id_user,id_car,name_group,description_group,action], (err, rows)=>{
+    connection.query(query_new_group, [id_user,id_car,name_group,description_group,action], (err,res2, rows)=>{
         if(err){
             res.sendStatus(500)
             console.log(err)
-            console.log("HERE: " + last_name)
+            console.log("HERE: POST GROUP")
             res.end()
             return
         }
-       
-        res.send("Exito")
+
+        res.send(res2[0][0])
         console.log("Exito")
     })
 
