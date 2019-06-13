@@ -34,7 +34,7 @@ groups.post('/create_group/', (req, res) => {
         }
 
         res.send(res2[0][0])
-        console.log("Exito")
+        console.log(res2[0][0])
     })
 
 })
