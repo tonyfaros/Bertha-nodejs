@@ -43,6 +43,10 @@ challenges.post('/link_group_challenge/', (req, res) => {
     const id_group = req.body.id_group
     const id_challenge = req.body.id_challenge
 
+    console.log(id_challenge)
+
+    console.log(id_group)
+    
     const action = 'new'
 
     const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`groups_x_challenge`( ?, ?, ?);"
@@ -59,7 +63,6 @@ challenges.post('/link_group_challenge/', (req, res) => {
         res.send("Exito")
         console.log("Exito")
     })
-
 })
 
 challenges.post('/drop_challenge/', (req, res) => {
