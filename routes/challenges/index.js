@@ -45,6 +45,10 @@ challenges.post('/link_group_challenge/', (req, res) => {
 
     //console.log(id_challenge)
 
+    for(var attr in id_group){
+        console.log(attr+": "+id_group[attr])
+    }
+
     console.log(id_group)
     
     const action = 'new'
