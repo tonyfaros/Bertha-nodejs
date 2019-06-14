@@ -40,10 +40,10 @@ challenges.post('/link_group_challenge/', (req, res) => {
 
     const connection = bd_connection
 
-    const id_group = req.body.id_group
-    const id_challenge = req.body.id_challenge
+    const id_group = req.body
+    //const id_challenge = req.body.id_challenge
 
-    console.log(id_challenge)
+    //console.log(id_challenge)
 
     console.log(id_group)
     
