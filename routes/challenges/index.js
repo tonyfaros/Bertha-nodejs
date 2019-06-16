@@ -64,7 +64,7 @@ challenges.post('/link_group_challenge/', (req, res) => {
         var key_groupTemp = "id_group"+i
         console.log("Inside for: "+data[key_groupTemp])
 
-        connection.query(query_addChallenge, [id_challengeSended,data.id_group+i,action], (err, rows)=>{
+        connection.query(query_addChallenge, [id_challengeSended,data[key_groupTemp],action], (err, rows)=>{
             if(err){
                 res.sendStatus(500)
                 console.log(err)
