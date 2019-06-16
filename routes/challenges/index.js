@@ -62,7 +62,7 @@ challenges.post('/link_group_challenge/', (req, res) => {
 
     for(var i = 0; i < jsonLen; i++){
 
-        console.log(data.id_group+i)
+        console.log("Inside for: "+data.id_group+i)
 
         connection.query(query_addChallenge, [id_challengeSended,data.id_group+i,action], (err, rows)=>{
             if(err){
