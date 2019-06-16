@@ -44,7 +44,7 @@ challenges.post('/link_group_challenge/', (req, res) => {
     const insideParams = id_group["params"]
 
     var data = JSON.parse(req.body["params"])
-    var jsonPretty = JSON.stringify(JSON.parse(data),null,2);  
+    var jsonPretty = JSON.stringify(data,null,2);  
 
 
     console.log("Trying data: "+data)
