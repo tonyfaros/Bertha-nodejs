@@ -44,11 +44,12 @@ challenges.post('/link_group_challenge/', (req, res) => {
 
     var data = JSON.parse(req.body["params"])
     var jsonPretty = JSON.stringify(data,null,2);  
-
+    const jsonLen = data.length;
 
     console.log("Trying pretty json: "+jsonPretty)
     console.log("Trying data json: "+data.id_group0)
     console.log("Trying data json: "+data.id_challenge)
+    console.log("Trying json length: "+jsonLen)
     res.end()
     //const id_challenge = req.body.id_challenge
 
