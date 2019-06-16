@@ -40,27 +40,30 @@ challenges.post('/link_group_challenge/', (req, res) => {
 
     const connection = bd_connection
 
-    const id_group = req.body
-
     var data = JSON.parse(req.body["params"])
     var jsonPretty = JSON.stringify(data,null,2);  
     const jsonLen = Object.keys(data).length;
+
+    const id_challengeSended = data.id_challenge
 
     console.log("Trying pretty json: "+jsonPretty)
     console.log("Trying data json: "+data.id_group0)
     console.log("Trying data json: "+data.id_challenge)
     console.log("Trying json length: "+jsonLen)
-    res.end()
+    
     //const id_challenge = req.body.id_challenge
 
     //console.log(id_challenge)
-/*
-    for(var attr in insideParams){
-        console.log(attr+": "+id_group[attr])
+
+    for(var i = 0; i < jsonLen; i++){
+        helper_postLink(id_challengeSended,data.id_group+i)
     }
 
+
+    res.end()
+
     ///console.log(id_group)
-    
+    /*
     const action = 'new'
 
     const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`groups_x_challenge`( ?, ?, ?);"
@@ -76,8 +79,32 @@ challenges.post('/link_group_challenge/', (req, res) => {
         
         res.send("Exito")
         console.log("Exito")
-    })*/
+        res.end()
+    })
+
+    */
 })
+
+function helper_postLink(id_challenge,id_group){
+    const connection = bd_connection
+
+    const action = 'new'
+
+    const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`groups_x_challenge`( ?, ?, ?);"
+
+    connection.query(query_addChallenge, [id_challenge,id_group,action], (err,res, rows)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            console.log("HERE: Link challenge with group")
+            res.end()
+            return
+        }
+        
+        console.log("Exito")
+        res.end()
+    })
+}
 
 challenges.post('/drop_challenge/', (req, res) => {
 
