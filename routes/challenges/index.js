@@ -62,7 +62,7 @@ challenges.post('/link_group_challenge/', (req, res) => {
 
     for(var i = 0; i < jsonLen; i++){
 
-        connection.query(query_addChallenge, [id_challengeSended,id_group+i,action], (err, rows)=>{
+        connection.query(query_addChallenge, [id_challengeSended,data.id_group+i,action], (err, rows)=>{
             if(err){
                 res.sendStatus(500)
                 console.log(err)
