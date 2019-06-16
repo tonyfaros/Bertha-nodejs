@@ -61,7 +61,7 @@ challenges.post('/link_group_challenge/', (req, res) => {
     const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`groups_x_challenge`( ?, ?, ?);"
 
     for(var i = 0; i < jsonLen; i++){
-        var key_groupTemp = "id_group"+1
+        var key_groupTemp = "id_group"+i
         console.log("Inside for: "+data[key_groupTemp])
 
         connection.query(query_addChallenge, [id_challengeSended,data.id_group+i,action], (err, rows)=>{
