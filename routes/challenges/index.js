@@ -49,7 +49,7 @@ challenges.post('/link_group_challenge/', (req, res) => {
     for(var attr in insideParams){
         console.log(attr+": "+id_group[attr])
     }
-
+/*
     ///console.log(id_group)
     
     const action = 'new'
@@ -67,7 +67,7 @@ challenges.post('/link_group_challenge/', (req, res) => {
         
         res.send("Exito")
         console.log("Exito")
-    })
+    })*/
 })
 
 challenges.post('/drop_challenge/', (req, res) => {
