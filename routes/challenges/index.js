@@ -42,7 +42,7 @@ challenges.post('/link_group_challenge/', (req, res) => {
 
     var data = JSON.parse(req.body["params"])
     var jsonPretty = JSON.stringify(data,null,2);  
-    const jsonLen = Object.keys(data).length;
+    const jsonLen = Object.keys(data).length - 1;
 
     const id_challengeSended = data.id_challenge
 
