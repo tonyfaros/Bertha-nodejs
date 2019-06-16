@@ -47,9 +47,10 @@ challenges.post('/link_group_challenge/', (req, res) => {
 
 
 
-    console.log("Trying data: "+data.id_challenge)
+    console.log("Trying data: "+data)
     console.log(id_group["params"])
     console.log("Calling challenges id: "+id_group["params"]["id_challenge"])
+    res.end()
     //const id_challenge = req.body.id_challenge
 
     //console.log(id_challenge)
