@@ -55,34 +55,27 @@ challenges.post('/link_group_challenge/', (req, res) => {
 
     //console.log(id_challenge)
 
-    for(var i = 0; i < jsonLen; i++){
-        helper_postLink(id_challengeSended,data.id_group+i)
-    }
-
-
-    res.end()
-
-    ///console.log(id_group)
-    /*
+    
     const action = 'new'
 
     const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`groups_x_challenge`( ?, ?, ?);"
 
-    connection.query(query_addChallenge, [id_challenge,id_group,action], (err, rows)=>{
-        if(err){
-            res.sendStatus(500)
-            console.log(err)
-            console.log("HERE: Link challenge with group")
-            res.end()
-            return
-        }
-        
-        res.send("Exito")
-        console.log("Exito")
-        res.end()
-    })
+    for(var i = 0; i < jsonLen; i++){
 
-    */
+        connection.query(query_addChallenge, [id_challengeSended,id_group+i,action], (err, rows)=>{
+            if(err){
+                res.sendStatus(500)
+                console.log(err)
+                console.log("HERE: Link challenge with group")
+                res.end()
+                return
+            }
+            
+            res.send("Exito")
+            console.log("Exito")
+            
+        })
+    }
 })
 
 function helper_postLink(id_challenge,id_group){
