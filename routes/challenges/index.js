@@ -73,11 +73,14 @@ challenges.post('/link_group_challenge/', (req, res) => {
                 return
             }
             
-            res.send("Exito")
-            console.log("Exito")
+            //res.send("Exito")
+            
             
         })
     }
+    console.log("Exito")
+    res.send("Exito")
+    res.end()
 })
 
 function helper_postLink(id_challenge,id_group){
