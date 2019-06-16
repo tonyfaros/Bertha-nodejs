@@ -44,7 +44,7 @@ challenges.post('/link_group_challenge/', (req, res) => {
 
     var data = JSON.parse(req.body["params"])
     var jsonPretty = JSON.stringify(data,null,2);  
-    const jsonLen = data.length;
+    const jsonLen = Object.keys(data).length;
 
     console.log("Trying pretty json: "+jsonPretty)
     console.log("Trying data json: "+data.id_group0)
