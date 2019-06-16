@@ -41,16 +41,13 @@ challenges.post('/link_group_challenge/', (req, res) => {
     const connection = bd_connection
 
     const id_group = req.body
-    const insideParams = id_group["params"]
 
     var data = JSON.parse(req.body["params"])
     var jsonPretty = JSON.stringify(data,null,2);  
 
 
-    console.log("Trying data: "+data)
     console.log("Trying pretty json: "+jsonPretty)
-    console.log(id_group["params"])
-    console.log("Calling challenges id: "+id_group["params"]["id_challenge"])
+    console.log("Trying data json: "+data.id_group0)
     res.end()
     //const id_challenge = req.body.id_challenge
 
