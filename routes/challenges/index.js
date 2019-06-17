@@ -83,27 +83,6 @@ challenges.post('/link_group_challenge/', (req, res) => {
     res.end()
 })
 
-function helper_postLink(id_challenge,id_group){
-    const connection = bd_connection
-
-    const action = 'new'
-
-    const query_addChallenge = "CALL `heroku_cd69aac1f1eff94`.`groups_x_challenge`( ?, ?, ?);"
-
-    connection.query(query_addChallenge, [id_challenge,id_group,action], (err,res, rows)=>{
-        if(err){
-            res.sendStatus(500)
-            console.log(err)
-            console.log("HERE: Link challenge with group")
-            res.end()
-            return
-        }
-        
-        console.log("Exito")
-        res.end()
-    })
-}
-
 challenges.post('/drop_challenge/', (req, res) => {
 
     const connection = bd_connection
@@ -125,6 +104,27 @@ challenges.post('/drop_challenge/', (req, res) => {
         
         res.send("Exito")
         console.log("Exito")
+    })
+
+})
+
+challenges.get('get_challengesxgroup/:id', (req,res)=>{
+    const connection = bd_connection
+    const paramId = req.params.id
+
+    const action = 'getChallengesxGroup'
+
+    const query_getChallengesxGroup = "CALL `heroku_cd69aac1f1eff94`.`groups_x_challenge`( '', ?, ?);"
+
+    connection.query(query_getChallengesxGroup, [paramId,action], (err, rows, fields)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            res.end()
+            return
+        }
+        res.json(rows)
+        res.end()
     })
 
 })
