@@ -108,7 +108,7 @@ challenges.post('/drop_challenge/', (req, res) => {
 
 })
 
-challenges.get('get_challengesxgroup/:id', (req,res)=>{
+challenges.get('/get_challengesxgroup/:id', (req,res)=>{
     console.log("Trying to get challenges x group")
     const connection = bd_connection
     const paramId = req.params.id
