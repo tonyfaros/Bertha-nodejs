@@ -124,7 +124,7 @@ challenges.get('/get_challengesxgroup/:id', (req,res)=>{
             res.end()
             return
         }
-        res.json(rows)
+        res.json(rows[0])
         res.end()
     })
 
