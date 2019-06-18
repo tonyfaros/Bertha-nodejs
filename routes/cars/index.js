@@ -108,6 +108,32 @@ cars.get('/carsxuser/:userID', (req, res) => {
         res.json(rows[0])
     })
 })
+
+cars.post('/delete_car/', (req, res) => {
+
+    const connection = bd_connection
+
+    const id_user = req.body.id_user
+    const id_car = req.body.id_car
+
+    const action = 'deleteCar'
+
+    const query_deletingCar = "CALL `heroku_cd69aac1f1eff94`.`user_data`(?,'','','','','','','',?,?)"
+
+    connection.query(query_deletingCar, [id_user,id_car,action], (err, rows)=>{
+        if(err){
+            res.sendStatus(500)
+            console.log(err)
+            console.log("HERE: deleting car")
+            res.end()
+            return
+        }
+        
+        res.send("Exito")
+        console.log("Exito")
+    })
+
+})
 module.exports = cars
 
 ///CALL `heroku_cd69aac1f1eff94`.`car_data`('2','' ,'' ,'' ,'' ,'' ,'' ,'' ,'','' ,'' ,'' ,'' ,'' ,'' , '','' ,'' ,'' ,'' ,'' , 'get', @out_param);
